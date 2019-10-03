@@ -8,6 +8,8 @@ import lombok.ToString;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,6 +37,12 @@ public class HtmlTag {
     private int id;
 
     /**
+     * The HTML tag type.
+     */
+    @Enumerated(value = EnumType.STRING)
+    private HtmlTagType type;
+
+    /**
      * The HTML attributes of the HTML tag.
      */
     @MapKeyColumn(name = "attribute", unique = true, length = 30)
@@ -53,10 +61,12 @@ public class HtmlTag {
     /**
      * Initializes a newly created {@code HtmlTag} object with a simple assignment of parameters to the fields.
      *
+     * @param type           {@link #type}
      * @param htmlAttributes {@link #htmlAttributes}
      * @param stylesheet     {@link #stylesheet}
      */
-    public HtmlTag(Map<String, String> htmlAttributes, Map<String, String> stylesheet) {
+    public HtmlTag(HtmlTagType type, Map<String, String> htmlAttributes, Map<String, String> stylesheet) {
+        this.type = type;
         this.htmlAttributes = htmlAttributes;
         this.stylesheet = stylesheet;
     }
