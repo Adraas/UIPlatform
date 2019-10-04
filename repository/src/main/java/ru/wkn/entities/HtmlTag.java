@@ -8,7 +8,6 @@ import lombok.ToString;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -19,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.List;
 import java.util.Map;
 
@@ -58,7 +58,8 @@ public class HtmlTag {
     /**
      * The stylesheet (CSS) for the HTML tag.
      */
-    @Embedded
+    @OneToOne(targetEntity = Stylesheet.class, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "css_id")
     private Stylesheet stylesheet;
 
     /**

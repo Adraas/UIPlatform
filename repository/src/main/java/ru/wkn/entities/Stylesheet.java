@@ -7,8 +7,11 @@ import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.MapKeyColumn;
 import java.util.Map;
 
@@ -17,12 +20,19 @@ import java.util.Map;
  *
  * @author Orin Adraas
  */
-@Embeddable
+@Entity(name = "css")
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
 @Getter
 public class Stylesheet {
+
+    /**
+     * The ID of the represented CSS.
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     /**
      * The selector of the represented CSS.
