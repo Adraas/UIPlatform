@@ -1,7 +1,9 @@
 package ru.wkn.entities;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.Map;
 
@@ -11,6 +13,8 @@ import java.util.Map;
  * @author Orin Adraas
  */
 @NoArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Getter
 public class Stylesheet {
 
