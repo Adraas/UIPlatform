@@ -33,6 +33,7 @@
 
     <modules>
         <module>repository</module>
+        <module>html-handler</module>
     </modules>
 
     <build>
