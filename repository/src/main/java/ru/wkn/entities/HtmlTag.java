@@ -8,6 +8,7 @@ import lombok.ToString;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -57,10 +58,8 @@ public class HtmlTag {
     /**
      * The stylesheet (CSS) for the HTML tag.
      */
-    @MapKeyColumn(name = "style_parameter", unique = true, length = 60)
-    @Column(name = "style_parameter_value", length = 60)
-    @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
-    private Map<String, String> stylesheet;
+    @Embedded
+    private Stylesheet stylesheet;
 
     /**
      * The child HTML tags of this HTML tag.
@@ -77,8 +76,7 @@ public class HtmlTag {
      * @param stylesheet     {@link #stylesheet}
      * @param htmlTags       {@link #htmlTags}
      */
-    public HtmlTag(HtmlTagType type, Map<String, String> htmlAttributes, Map<String, String> stylesheet,
-                   List<HtmlTag> htmlTags) {
+    public HtmlTag(HtmlTagType type, Map<String, String> htmlAttributes, Stylesheet stylesheet, List<HtmlTag> htmlTags) {
         this.type = type;
         this.htmlAttributes = htmlAttributes;
         this.stylesheet = stylesheet;
