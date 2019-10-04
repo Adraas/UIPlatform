@@ -5,6 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
+import javax.persistence.MapKeyColumn;
 import java.util.Map;
 
 /**
@@ -12,6 +17,7 @@ import java.util.Map;
  *
  * @author Orin Adraas
  */
+@Embeddable
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
@@ -19,18 +25,17 @@ import java.util.Map;
 public class Stylesheet {
 
     /**
-     * The ID of the represented CSS.
-     */
-    private int id;
-
-    /**
      * The selector of the represented CSS.
      */
+    @Column(name = "selector", nullable = false, length = 30)
     private String selector;
 
     /**
      * The declaration of the represented CSS.
      */
+    @MapKeyColumn(name = "style_parameter", unique = true, length = 60)
+    @Column(name = "style_parameter_value", length = 60)
+    @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     private Map<String, String> declaration;
 
     /**
