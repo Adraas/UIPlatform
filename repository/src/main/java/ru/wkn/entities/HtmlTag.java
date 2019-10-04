@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -14,7 +15,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MapKeyColumn;
+import javax.persistence.OneToMany;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -59,15 +63,25 @@ public class HtmlTag {
     private Map<String, String> stylesheet;
 
     /**
+     * The child HTML tags of this HTML tag.
+     */
+    @OneToMany(targetEntity = HtmlTag.class, cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "child_html_tags")
+    private List<HtmlTag> htmlTags;
+
+    /**
      * Initializes a newly created {@code HtmlTag} object with a simple assignment of parameters to the fields.
      *
      * @param type           {@link #type}
      * @param htmlAttributes {@link #htmlAttributes}
      * @param stylesheet     {@link #stylesheet}
+     * @param htmlTags       {@link #htmlTags}
      */
-    public HtmlTag(HtmlTagType type, Map<String, String> htmlAttributes, Map<String, String> stylesheet) {
+    public HtmlTag(HtmlTagType type, Map<String, String> htmlAttributes, Map<String, String> stylesheet,
+                   List<HtmlTag> htmlTags) {
         this.type = type;
         this.htmlAttributes = htmlAttributes;
         this.stylesheet = stylesheet;
+        this.htmlTags = htmlTags;
     }
 }
