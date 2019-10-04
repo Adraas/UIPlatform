@@ -10,4 +10,12 @@ public class UserInputEntryService implements IService<UserInputEntry, Integer> 
 
     @Qualifier(value = "userInputEntryRepository")
     private UserInputEntryRepository repository;
+
+    public void createUserInputEntry(UserInputEntry userInputEntry) {
+        repository.save(userInputEntry);
+    }
+
+    public Iterable<UserInputEntry> getAllUserInputEntries() {
+        return repository.findAll();
+    }
 }

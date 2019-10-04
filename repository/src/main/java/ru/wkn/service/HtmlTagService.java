@@ -10,4 +10,16 @@ public class HtmlTagService implements IService<HtmlTag, Integer> {
 
     @Qualifier(value = "htmlTagRepository")
     private HtmlTagRepository repository;
+
+    public void createHtmlTag(HtmlTag htmlTag) {
+        repository.save(htmlTag);
+    }
+
+    public HtmlTag readHtmlTagById(Integer id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    public Iterable<HtmlTag> getAllHtmlTags() {
+        return repository.findAll();
+    }
 }
