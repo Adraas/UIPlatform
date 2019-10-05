@@ -5,6 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MapKeyColumn;
 import java.util.Map;
 
 /**
@@ -12,6 +20,7 @@ import java.util.Map;
  *
  * @author Orin Adraas
  */
+@Entity(name = "js_function")
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
@@ -21,16 +30,22 @@ public class JavaScriptFunction {
     /**
      * The ID of the represented JS function.
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     /**
      * The JS function name.
      */
+    @Column(name = "function_name", nullable = false, length = 60)
     private String functionName;
 
     /**
      * The parameters of the JS function.
      */
+    @MapKeyColumn(name = "parameter_type", unique = true, length = 30)
+    @Column(name = "parameter_name", nullable = false, length = 30)
+    @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     private Map<String, String> parameters;
 
     /**
