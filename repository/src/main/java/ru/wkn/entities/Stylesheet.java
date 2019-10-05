@@ -44,7 +44,7 @@ public class Stylesheet {
      * The declaration of the represented CSS.
      */
     @MapKeyColumn(name = "style_parameter", unique = true, length = 60)
-    @Column(name = "style_parameter_value", length = 60)
+    @Column(name = "style_parameter_value", nullable = false, length = 60)
     @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     private Map<String, String> declaration;
 
