@@ -51,7 +51,7 @@ public class HtmlTag {
      * The HTML attributes of the HTML tag.
      */
     @MapKeyColumn(name = "attribute", unique = true, length = 30)
-    @Column(name = "attribute_value", nullable = false, length = 30)
+    @Column(name = "attribute_value", length = 30)
     @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     private Map<String, String> htmlAttributes;
 
