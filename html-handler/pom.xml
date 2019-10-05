@@ -17,6 +17,12 @@
     <description>The general logic of this web-application</description>
 
     <dependencies>
+        <dependency>
+            <groupId>ru.wkn</groupId>
+            <artifactId>repository</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
         <dependency>
             <groupId>org.jsoup</groupId>
