@@ -8,6 +8,7 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <class>ru.wkn.entities.Stylesheet</class>
+        <class>ru.wkn.entities.JavaScriptFunction</class>
         <class>ru.wkn.entities.HtmlTag</class>
         <class>ru.wkn.entities.UserInputEntry</class>
 
