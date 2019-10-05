@@ -3,7 +3,7 @@ package ru.wkn;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ru.wkn.service.IService;
+import ru.wkn.services.IService;
 
 /**
  * The class {@code RepositoryFacade} represents the facade pattern of the repository.
@@ -15,15 +15,15 @@ import ru.wkn.service.IService;
 public class RepositoryFacade {
 
     /**
-     * The abstract representation of the repository service.
+     * The abstract representation of the repository services.
      */
     private IService service;
 
     /**
      * Initializes a newly created {@code RepositoryFacade} object with the assignment value from the context for the
-     * {@code service} property.
+     * {@code services} property.
      *
-     * @param serviceBeanName the repository service bean name
+     * @param serviceBeanName the repository services bean name
      */
     public RepositoryFacade(String serviceBeanName) {
         service = (IService) new ClassPathXmlApplicationContext("/META-INF/spring-data-context.xml")

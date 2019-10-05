@@ -1,4 +1,4 @@
-package ru.wkn.service;
+package ru.wkn.services;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -6,7 +6,7 @@ import ru.wkn.entities.UserInputEntry;
 import ru.wkn.repository.UserInputEntryRepository;
 
 /**
- * The class {@code UserInputEntryService} represents a repository service layer implementation.
+ * The class {@code UserInputEntryService} represents a repository services layer implementation.
  *
  * @author Orin Adraas
  * @see IService
