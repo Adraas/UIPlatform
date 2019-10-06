@@ -34,5 +34,7 @@ public abstract class HtmlGenerator {
         return Jsoup.isValid(htmlTags, whitelist);
     }
 
+    public abstract boolean htmlTagsFromStringIsValid(String htmlTags);
+
     public abstract List<HtmlTag> generateRandomHtmlTagsFromRepositoryByType(int htmlTagsQuantity);
 }
