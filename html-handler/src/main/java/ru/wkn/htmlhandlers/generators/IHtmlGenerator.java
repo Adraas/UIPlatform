@@ -4,10 +4,12 @@ import ru.wkn.RepositoryFacade;
 import ru.wkn.entities.HtmlTag;
 import ru.wkn.entities.HtmlTagType;
 
+import java.util.List;
+
 public interface IHtmlGenerator {
 
-    HtmlTag generateHtmlTagFromString(String htmlTag);
+    List<HtmlTag> generateHtmlTagsFromString(String htmlTag);
 
-    HtmlTag generateRandomHtmlTagFromRepositoryByType(int htmlTagsQuantity, HtmlTagType htmlTagType,
-                                                      RepositoryFacade repositoryFacade);
+    List<HtmlTag> generateRandomHtmlTagsFromRepositoryByType(int htmlTagsQuantity, HtmlTagType htmlTagType,
+                                                             RepositoryFacade repositoryFacade);
 }
