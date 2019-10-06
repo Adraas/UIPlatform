@@ -24,7 +24,10 @@ public abstract class HtmlGenerator {
 
     private void initializeStandardAttributesWithHTTProtocols() {
         String[] standardWhitelistAttributes = new String[]{"accesskey", "class", "contenteditable", "contextmenu",
-                "dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang"};
+                "dir", "hidden", "id", "lang", "spellcheck", "style", "tabindex", "title", "xml:lang", "onblur",
+                "onchange", "onclick", "ondbclick", "onfocus", "onkeydown", "onkeypress", "onkeyup", "onload",
+                "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onreset", "onselect",
+                "onsubmit", "onunload"};
         for (String attribute : standardWhitelistAttributes) {
             standardWhitelistAttributesAndProtocols.put(attribute, new String[]{"http", "https"});
         }
