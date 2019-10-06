@@ -1,5 +1,7 @@
 package ru.wkn.htmlhandlers.wrappers;
 
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import ru.wkn.entities.HtmlTag;
 import ru.wkn.htmlforms.HtmlFormType;
 
@@ -7,7 +9,7 @@ import java.util.List;
 
 public interface IHtmlWrapper {
 
-    HtmlTag wrapHtmlTagsIntoForm(List<HtmlTag> htmlTags, HtmlFormType htmlFormType);
+    Element wrapHtmlTagsIntoForm(List<HtmlTag> htmlTags, HtmlFormType htmlFormType);
 
-    String wrapHtmlTagsIntoHtmlPage(List<HtmlTag> htmlTags);
+    Document wrapHtmlTagsIntoHtmlPage(List<HtmlTag> htmlTags);
 }
