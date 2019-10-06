@@ -2,15 +2,17 @@ package ru.wkn.htmlhandlers.generators;
 
 import ru.wkn.RepositoryFacade;
 import ru.wkn.entities.HtmlTag;
-import ru.wkn.entities.HtmlTagType;
 
 import java.util.List;
 
 public class InputFormHtmlGenerator extends HtmlGenerator {
 
+    public InputFormHtmlGenerator(RepositoryFacade repositoryFacade) {
+        super(repositoryFacade);
+    }
+
     @Override
-    public List<HtmlTag> generateRandomHtmlTagsFromRepositoryByType(int htmlTagsQuantity, HtmlTagType htmlTagType,
-                                                                    RepositoryFacade repositoryFacade) {
+    public List<HtmlTag> generateRandomHtmlTagsFromRepositoryByType(int htmlTagsQuantity) {
         return null;
     }
 }
