@@ -1,10 +1,12 @@
 package ru.wkn.htmlhandlers.wrappers;
 
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Tag;
 import ru.wkn.entities.HtmlTag;
+import ru.wkn.entities.JavaScriptFunction;
 import ru.wkn.htmlforms.HtmlFormType;
 
 import java.util.List;
@@ -26,6 +28,31 @@ public class SimpleHtmlWrapper implements IHtmlWrapper {
 
     @Override
     public Document wrapHtmlTagsIntoHtmlPage(List<HtmlTag> htmlTags) {
+        List<JavaScriptFunction> javaScriptFunctions = extractJSFunctions(htmlTags);
+        StringBuilder htmlPageBuilder = new StringBuilder("<!DOCTYPE html>\n");
+        htmlPageBuilder.append("<html lang=\"ru\">\n")
+                .append("<head>\n")
+                .append("<title>Simple HTML input form</title>\n")
+                .append("<script language=\"JavaScript\" type=\"text/javascript\">\n")
+                .append(generateScriptTagContent(javaScriptFunctions))
+                .append("</script>\n")
+                .append("</head>\n")
+                .append("<body>\n")
+                .append(generateBodyTagContent(htmlTags))
+                .append("</body>\n")
+                .append("</html>");
+        return Jsoup.parse(htmlPageBuilder.toString());
+    }
+
+    private List<JavaScriptFunction> extractJSFunctions(List<HtmlTag> htmlTags) {
+        return null;
+    }
+
+    private String generateScriptTagContent(List<JavaScriptFunction> javaScriptFunctions) {
+        return null;
+    }
+
+    private String generateBodyTagContent(List<HtmlTag> htmlTags) {
         return null;
     }
 }
