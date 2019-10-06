@@ -34,7 +34,7 @@ public class InputFormHtmlGenerator extends HtmlGenerator {
     }
 
     @Override
-    public List<Element> generateRandomHtmlTagsFromRepositoryByType(int htmlTagsQuantity) {
+    public List<Element> chooseRandomElementsFromRepository(int htmlTagsQuantity) {
         return null;
     }
 }

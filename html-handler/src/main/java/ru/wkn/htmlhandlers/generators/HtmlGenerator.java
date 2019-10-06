@@ -39,5 +39,5 @@ public abstract class HtmlGenerator {
 
     public abstract boolean htmlTagsFromStringIsValid(String htmlTags);
 
-    public abstract List<Element> generateRandomHtmlTagsFromRepositoryByType(int htmlTagsQuantity);
+    public abstract List<Element> chooseRandomElementsFromRepository(int htmlTagsQuantity);
 }
