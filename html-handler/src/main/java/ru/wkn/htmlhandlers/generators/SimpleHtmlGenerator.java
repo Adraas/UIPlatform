@@ -6,12 +6,7 @@ import ru.wkn.entities.HtmlTagType;
 
 import java.util.List;
 
-public class SimpleHtmlGenerator implements IHtmlGenerator {
-
-    @Override
-    public List<HtmlTag> generateHtmlTagsFromString(String htmlTag) {
-        return null;
-    }
+public class SimpleHtmlGenerator extends HtmlGenerator {
 
     @Override
     public List<HtmlTag> generateRandomHtmlTagsFromRepositoryByType(int htmlTagsQuantity, HtmlTagType htmlTagType,
