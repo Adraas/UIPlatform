@@ -1,8 +1,8 @@
 package ru.wkn.htmlhandlers.generators;
 
+import org.jsoup.nodes.Element;
 import org.jsoup.safety.Whitelist;
 import ru.wkn.RepositoryFacade;
-import ru.wkn.entities.HtmlTag;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class InputFormHtmlGenerator extends HtmlGenerator {
     }
 
     @Override
-    public List<HtmlTag> generateRandomHtmlTagsFromRepositoryByType(int htmlTagsQuantity) {
+    public List<Element> generateRandomHtmlTagsFromRepositoryByType(int htmlTagsQuantity) {
         return null;
     }
 }

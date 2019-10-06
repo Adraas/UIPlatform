@@ -2,9 +2,9 @@ package ru.wkn.htmlhandlers.generators;
 
 import lombok.Getter;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Element;
 import org.jsoup.safety.Whitelist;
 import ru.wkn.RepositoryFacade;
-import ru.wkn.entities.HtmlTag;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,5 +39,5 @@ public abstract class HtmlGenerator {
 
     public abstract boolean htmlTagsFromStringIsValid(String htmlTags);
 
-    public abstract List<HtmlTag> generateRandomHtmlTagsFromRepositoryByType(int htmlTagsQuantity);
+    public abstract List<Element> generateRandomHtmlTagsFromRepositoryByType(int htmlTagsQuantity);
 }
