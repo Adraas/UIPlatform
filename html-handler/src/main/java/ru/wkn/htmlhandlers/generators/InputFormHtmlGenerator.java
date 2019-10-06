@@ -6,7 +6,7 @@ import ru.wkn.entities.HtmlTagType;
 
 import java.util.List;
 
-public class SimpleHtmlGenerator extends HtmlGenerator {
+public class InputFormHtmlGenerator extends HtmlGenerator {
 
     @Override
     public List<HtmlTag> generateRandomHtmlTagsFromRepositoryByType(int htmlTagsQuantity, HtmlTagType htmlTagType,

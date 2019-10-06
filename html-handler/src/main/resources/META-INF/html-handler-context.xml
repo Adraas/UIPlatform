@@ -5,7 +5,7 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <beans>
-        <bean id="simpleHtmlGenerator" class="ru.wkn.htmlhandlers.generators.SimpleHtmlGenerator"/>
+        <bean id="simpleHtmlGenerator" class="ru.wkn.htmlhandlers.generators.InputFormHtmlGenerator"/>
         <bean id="simpleHtmlWrapper" class="ru.wkn.htmlhandlers.wrappers.SimpleHtmlWrapper"/>
     </beans>
 
