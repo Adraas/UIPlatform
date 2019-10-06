@@ -1,8 +1,13 @@
 package ru.wkn.htmlhandlers.generators;
 
+import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
+import org.jsoup.parser.Tag;
 import org.jsoup.safety.Whitelist;
 import ru.wkn.RepositoryFacade;
+import ru.wkn.entities.HtmlTag;
+import ru.wkn.entities.HtmlTagType;
+import ru.wkn.repository.HtmlTagRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,7 +65,19 @@ public class InputFormHtmlGenerator extends HtmlGenerator {
     }
 
     @Override
-    public List<Element> chooseRandomElementsFromRepository(int htmlTagsQuantity) {
-        return null;
+    public List<Element> chooseRandomElementsFromRepositoryByType(int htmlTagsQuantity, HtmlTagType htmlTagType) {
+        List<HtmlTag> htmlTags = (List<HtmlTag>) ((HtmlTagRepository) getRepositoryFacade().getService().getRepository())
+                .findHtmlTagsByType(htmlTagType);
+        int[] randomValues = generateRandomValues(htmlTagsQuantity, htmlTags.size() - 1);
+        List<Element> elements = new ArrayList<>();
+        for (int i = 0; i < htmlTagsQuantity; i++) {
+            HtmlTag htmlTag = htmlTags.get(randomValues[i]);
+            Attributes attributes = new Attributes();
+            for (String attribute : htmlTag.getHtmlAttributes().keySet()) {
+                attributes.put(attribute, htmlTag.getHtmlAttributes().get(attribute));
+            }
+            elements.add(new Element(Tag.valueOf(htmlTag.getType().getType()), "", attributes));
+        }
+        return elements;
     }
 }
