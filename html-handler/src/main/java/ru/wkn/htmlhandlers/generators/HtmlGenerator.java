@@ -5,10 +5,12 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.safety.Whitelist;
 import ru.wkn.RepositoryFacade;
+import ru.wkn.entities.HtmlTagType;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 @Getter
 public abstract class HtmlGenerator {
@@ -39,5 +41,14 @@ public abstract class HtmlGenerator {
 
     public abstract boolean htmlTagsFromStringIsValid(String htmlTags);
 
-    public abstract List<Element> chooseRandomElementsFromRepository(int htmlTagsQuantity);
+    public abstract List<Element> chooseRandomElementsFromRepositoryByType(int htmlTagsQuantity, HtmlTagType htmlTagType);
+
+    int[] generateRandomValues(int htmlTagsQuantity, int maximalVale) {
+        Random random = new Random();
+        int[] randomValues = new int[htmlTagsQuantity];
+        for (int i = 0; i < htmlTagsQuantity; i++) {
+            randomValues[i] = random.nextInt(maximalVale);
+        }
+        return randomValues;
+    }
 }
