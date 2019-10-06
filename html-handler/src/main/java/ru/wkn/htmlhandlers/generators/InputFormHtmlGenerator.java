@@ -17,7 +17,7 @@ public class InputFormHtmlGenerator extends HtmlGenerator {
 
     private void initializeWhitelist() {
         whitelist = new Whitelist()
-                .addTags("input", "select", "checkbox", "textarea")
+                .addTags("input", "select", "textarea")
                 .addAttributes("input", "accept", "align", "alt", "autocomplete",
                         "autofocus", "border", "checked", "disabled", "form", "formaction", "formenctype", "formmethod",
                         "formnovalidate", "formtarget", "list", "max", "maxlength", "min", "multiple", "name", "pattern",
