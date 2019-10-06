@@ -12,6 +12,11 @@ public class InputFormHtmlGenerator extends HtmlGenerator {
     }
 
     @Override
+    public boolean htmlTagsFromStringIsValid(String htmlTags) {
+        return false;
+    }
+
+    @Override
     public List<HtmlTag> generateRandomHtmlTagsFromRepositoryByType(int htmlTagsQuantity) {
         return null;
     }

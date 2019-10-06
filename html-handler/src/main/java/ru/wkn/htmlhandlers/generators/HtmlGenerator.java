@@ -13,9 +13,7 @@ public abstract class HtmlGenerator {
 
     private RepositoryFacade repositoryFacade;
 
-    public List<HtmlTag> generateHtmlTagsFromString(String htmlTags) {
-        return null;
-    }
+    public abstract boolean htmlTagsFromStringIsValid(String htmlTags);
 
     public abstract List<HtmlTag> generateRandomHtmlTagsFromRepositoryByType(int htmlTagsQuantity);
 }
