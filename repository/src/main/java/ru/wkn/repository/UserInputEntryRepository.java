@@ -19,5 +19,5 @@ public interface UserInputEntryRepository extends CrudRepository<UserInputEntry,
      * @param inputEntry the given input entry as a {@code String} value for the searching
      * @return a found {@code UserInputEntry} object
      */
-    UserInputEntry getUserInputEntryByInputEntry(String inputEntry);
+    UserInputEntry findUserInputEntryByInputEntry(String inputEntry);
 }
