@@ -88,7 +88,29 @@ public class SimpleHtmlWrapper extends HtmlWrapper {
     }
 
     private String generateScriptTagContent(Iterable<JavaScriptFunction> javaScriptFunctions) {
-        return null;
+        StringBuilder scriptTagBuilder = new StringBuilder();
+        for (JavaScriptFunction javaScriptFunction : javaScriptFunctions) {
+            scriptTagBuilder.append("function ")
+                    .append(javaScriptFunction.getFunctionName())
+                    .append("(").append(javaScriptFunction)
+                    .append(generateParametersLine(javaScriptFunction))
+                    .append(") {\n")
+                    .append(javaScriptFunction.getFunctionImplementation())
+                    .append("\n}\n");
+        }
+        return scriptTagBuilder.toString();
+    }
+
+    private StringBuilder generateParametersLine(JavaScriptFunction javaScriptFunction) {
+        StringBuilder parametersLineBuilder = new StringBuilder();
+        if (javaScriptFunction.getParameters().size() > 0) {
+            for (String parameterName : javaScriptFunction.getParameters().keySet()) {
+                parametersLineBuilder.append(javaScriptFunction.getParameters().get(parameterName))
+                        .append(" ").append(parameterName).append(", ");
+            }
+            parametersLineBuilder.delete(parametersLineBuilder.length() - 2, parametersLineBuilder.length());
+        }
+        return parametersLineBuilder;
     }
 
     private String generateStyleTagContent(Iterable<Stylesheet> stylesheets) {
