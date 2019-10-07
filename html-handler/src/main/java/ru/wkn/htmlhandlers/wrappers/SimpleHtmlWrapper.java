@@ -80,7 +80,7 @@ public class SimpleHtmlWrapper extends HtmlWrapper {
     }
 
     private Iterable<Stylesheet> extractCSS(List<HtmlTag> htmlTags) {
-        ArrayList<Stylesheet> stylesheets = new ArrayList<>();
+        List<Stylesheet> stylesheets = new ArrayList<>();
         for (HtmlTag htmlTag : htmlTags) {
             stylesheets.add(htmlTag.getStylesheet());
         }
