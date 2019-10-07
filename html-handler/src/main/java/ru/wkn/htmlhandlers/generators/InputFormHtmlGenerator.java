@@ -20,6 +20,7 @@ public class InputFormHtmlGenerator extends HtmlGenerator {
     public InputFormHtmlGenerator(RepositoryFacade repositoryFacade) {
         super(repositoryFacade);
         initializeWhitelist();
+        setWhitelist(whitelist);
     }
 
     private void initializeWhitelist() {
@@ -57,11 +58,6 @@ public class InputFormHtmlGenerator extends HtmlGenerator {
             whitelist.addProtocols(tags[2], attribute,
                     getStandardWhitelistAttributesAndProtocols().get(attribute));
         }
-    }
-
-    @Override
-    public boolean htmlTagsFromStringIsValid(String htmlTags) {
-        return htmlTagsFromStringIsValid(htmlTags, whitelist);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package ru.wkn.htmlhandlers.generators;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.safety.Whitelist;
@@ -13,14 +14,17 @@ import java.util.Map;
 import java.util.Random;
 
 @Getter
+@Setter
 public abstract class HtmlGenerator {
 
     private RepositoryFacade repositoryFacade;
     private Map<String, String[]> standardWhitelistAttributesAndProtocols;
+    private Whitelist whitelist;
 
     public HtmlGenerator(RepositoryFacade repositoryFacade) {
         this.repositoryFacade = repositoryFacade;
         standardWhitelistAttributesAndProtocols = new HashMap<>();
+        whitelist = new Whitelist();
         initializeStandardAttributesWithHTTProtocols();
     }
 
@@ -35,11 +39,9 @@ public abstract class HtmlGenerator {
         }
     }
 
-    boolean htmlTagsFromStringIsValid(String htmlTags, Whitelist whitelist) {
+    public boolean htmlTagsFromStringIsValid(String htmlTags) {
         return Jsoup.isValid(htmlTags, whitelist);
     }
-
-    public abstract boolean htmlTagsFromStringIsValid(String htmlTags);
 
     public abstract List<Element> chooseRandomElementsFromRepositoryByType(int htmlTagsQuantity, HtmlTagType htmlTagType);
 
