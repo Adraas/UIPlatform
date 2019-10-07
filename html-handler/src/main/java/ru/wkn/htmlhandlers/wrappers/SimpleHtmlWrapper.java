@@ -17,12 +17,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The {@code SimpleHtmlWrapper} class implements the HTML wrapper methods for the HTML by the simple way.
+ *
+ * @author Orin Adraas
+ * @see HtmlWrapper
+ */
 public class SimpleHtmlWrapper extends HtmlWrapper {
 
+    /**
+     * Initializes a newly created {@code SimpleHtmlWrapper} object with a simple assignment of parameters to the
+     * fields.
+     *
+     * @param repositoryFacade {@link #getRepositoryFacade()}
+     */
     public SimpleHtmlWrapper(RepositoryFacade repositoryFacade) {
         super(repositoryFacade);
     }
 
+    /**
+     * @see HtmlWrapper#wrapHtmlTagsIntoForm(List, HtmlFormType)
+     */
     @Override
     public Element wrapHtmlTagsIntoForm(List<HtmlTag> htmlTags, HtmlFormType htmlFormType) {
         Element element = new Element(htmlFormType.getHtmlFormType());
@@ -36,6 +51,9 @@ public class SimpleHtmlWrapper extends HtmlWrapper {
         return element;
     }
 
+    /**
+     * @see HtmlWrapper#wrapHtmlTagsIntoHtmlPage(List)
+     */
     @Override
     public Document wrapHtmlTagsIntoHtmlPage(List<HtmlTag> htmlTags) {
         Map<JavaScriptFunction, String> javaScriptFunctions = extractJSFunctions(htmlTags);
