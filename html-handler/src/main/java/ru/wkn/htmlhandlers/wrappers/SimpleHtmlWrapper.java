@@ -52,7 +52,7 @@ public class SimpleHtmlWrapper extends HtmlWrapper {
                 .append("\n</style>\n")
                 .append("</head>\n")
                 .append("<body>\n")
-                .append(generateBodyTagContent(htmlTags, javaScriptFunctions))
+                .append(generateBodyTagContent(htmlTags))
                 .append("\n</body>\n")
                 .append("</html>");
         return Jsoup.parse(htmlPageBuilder.toString());
@@ -132,7 +132,30 @@ public class SimpleHtmlWrapper extends HtmlWrapper {
         return styleBodyBuilder;
     }
 
-    private String generateBodyTagContent(List<HtmlTag> htmlTags, Map<JavaScriptFunction, String> javaScriptFunctions) {
-        return null;
+    private String generateBodyTagContent(List<HtmlTag> htmlTags) {
+        StringBuilder bodyTagBuilder = new StringBuilder();
+        for (HtmlTag htmlTag : htmlTags) {
+            bodyTagBuilder.append("<").append(htmlTag.getType().getType()).append(" ")
+                    .append(generateAttributesLine(htmlTag))
+                    .append(">\n")
+                    .append(generateBodyTagContent(htmlTag.getHtmlTags()))
+                    .append("\n</")
+                    .append(htmlTag.getType().getType())
+                    .append(">\n");
+        }
+        return bodyTagBuilder.toString();
+    }
+
+    private StringBuilder generateAttributesLine(HtmlTag htmlTag) {
+        StringBuilder attributesLineBuilder = new StringBuilder();
+        if (!htmlTag.getHtmlAttributes().isEmpty()) {
+            for (String attribute : htmlTag.getHtmlAttributes().keySet()) {
+                attributesLineBuilder.append(attribute).append("=\"")
+                        .append(htmlTag.getHtmlAttributes().get(attribute))
+                        .append("\" ");
+            }
+            attributesLineBuilder.delete(attributesLineBuilder.length() - 1, attributesLineBuilder.length());
+        }
+        return attributesLineBuilder;
     }
 }
