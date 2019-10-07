@@ -43,8 +43,8 @@ public class JavaScriptFunction {
     /**
      * The parameters of the JS function. The key of this map - it's a name of the parameter, value - its type.
      */
-    @MapKeyColumn(name = "parameter_type", unique = true, length = 30)
-    @Column(name = "parameter_name", nullable = false, length = 30)
+    @MapKeyColumn(name = "parameter_name", unique = true, length = 30)
+    @Column(name = "parameter_type", nullable = false, length = 30)
     @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     private Map<String, String> parameters;
 
