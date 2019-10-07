@@ -4,4 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 import ru.wkn.entities.JavaScriptFunction;
 
 public interface JavaScriptFunctionRepository extends CrudRepository<JavaScriptFunction, Integer> {
+
+    JavaScriptFunction findJavaScriptFunctionByFunctionName(String functionName);
 }

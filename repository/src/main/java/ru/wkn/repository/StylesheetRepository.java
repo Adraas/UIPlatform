@@ -4,4 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 import ru.wkn.entities.Stylesheet;
 
 public interface StylesheetRepository extends CrudRepository<Stylesheet, Integer> {
+
+    Stylesheet findStylesheetBySelector(String selector);
 }
