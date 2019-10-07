@@ -13,10 +13,25 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The {@code InputFormHtmlGenerator} class implements the HTML generator methods for the HTML input fields generating.
+ *
+ * @author Orin Adraas
+ * @see HtmlGenerator
+ */
 public class InputFormHtmlGenerator extends HtmlGenerator {
 
+    /**
+     * @see #getWhitelist()
+     */
     private Whitelist whitelist;
 
+    /**
+     * Initializes a newly created {@code InputFormHtmlGenerator} object with a simple assignment of parameters to the
+     * fields and with the custom {@code Whitelist} content initialization.
+     *
+     * @param repositoryFacade {@link #getRepositoryFacade()}
+     */
     public InputFormHtmlGenerator(RepositoryFacade repositoryFacade) {
         super(repositoryFacade);
         initializeWhitelist();
@@ -60,6 +75,9 @@ public class InputFormHtmlGenerator extends HtmlGenerator {
         }
     }
 
+    /**
+     * @see HtmlGenerator#chooseRandomElementsFromRepositoryByType(int, HtmlTagType)
+     */
     @Override
     public List<Element> chooseRandomElementsFromRepositoryByType(int htmlTagsQuantity, HtmlTagType htmlTagType) {
         List<HtmlTag> htmlTags = (List<HtmlTag>) ((HtmlTagRepository) getRepositoryFacade().getService().getRepository())
