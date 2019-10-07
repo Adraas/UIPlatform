@@ -114,7 +114,22 @@ public class SimpleHtmlWrapper extends HtmlWrapper {
     }
 
     private String generateStyleTagContent(Iterable<Stylesheet> stylesheets) {
-        return null;
+        StringBuilder styleTagBuilder = new StringBuilder();
+        for (Stylesheet stylesheet : stylesheets) {
+            styleTagBuilder.append(stylesheet.getSelector()).append(" {")
+                    .append(generateStyleBody(stylesheet))
+                    .append("}");
+        }
+        return styleTagBuilder.toString();
+    }
+
+    private StringBuilder generateStyleBody(Stylesheet stylesheet) {
+        StringBuilder styleBodyBuilder = new StringBuilder();
+        for (String styleRule : stylesheet.getDeclaration().keySet()) {
+            styleBodyBuilder.append(styleRule).append(": ")
+                    .append(stylesheet.getDeclaration().get(styleRule)).append(";\n");
+        }
+        return styleBodyBuilder;
     }
 
     private String generateBodyTagContent(List<HtmlTag> htmlTags, Map<JavaScriptFunction, String> javaScriptFunctions) {
