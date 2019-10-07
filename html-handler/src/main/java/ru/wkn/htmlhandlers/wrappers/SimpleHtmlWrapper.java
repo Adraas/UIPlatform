@@ -8,6 +8,7 @@ import org.jsoup.parser.Tag;
 import ru.wkn.RepositoryFacade;
 import ru.wkn.entities.HtmlTag;
 import ru.wkn.entities.JavaScriptFunction;
+import ru.wkn.entities.Stylesheet;
 import ru.wkn.htmlforms.HtmlFormType;
 import ru.wkn.repository.JavaScriptFunctionRepository;
 
@@ -37,17 +38,21 @@ public class SimpleHtmlWrapper extends HtmlWrapper {
     @Override
     public Document wrapHtmlTagsIntoHtmlPage(List<HtmlTag> htmlTags) {
         Map<JavaScriptFunction, String> javaScriptFunctions = extractJSFunctions(htmlTags);
+        Iterable<Stylesheet> stylesheets = extractCSS(htmlTags);
         StringBuilder htmlPageBuilder = new StringBuilder("<!DOCTYPE html>\n");
         htmlPageBuilder.append("<html lang=\"ru\">\n")
                 .append("<head>\n")
                 .append("<title>Simple HTML input form</title>\n")
                 .append("<script language=\"JavaScript\" type=\"text/javascript\">\n")
                 .append(generateScriptTagContent(javaScriptFunctions.keySet()))
-                .append("</script>\n")
+                .append("\n</script>\n")
+                .append("<style>\n")
+                .append(generateStyleTagContent(stylesheets))
+                .append("\n</style>\n")
                 .append("</head>\n")
                 .append("<body>\n")
                 .append(generateBodyTagContent(htmlTags, javaScriptFunctions))
-                .append("</body>\n")
+                .append("\n</body>\n")
                 .append("</html>");
         return Jsoup.parse(htmlPageBuilder.toString());
     }
@@ -73,7 +78,15 @@ public class SimpleHtmlWrapper extends HtmlWrapper {
         return javaScriptFunctions;
     }
 
+    private Iterable<Stylesheet> extractCSS(List<HtmlTag> htmlTags) {
+        return null;
+    }
+
     private String generateScriptTagContent(Iterable<JavaScriptFunction> javaScriptFunctions) {
+        return null;
+    }
+
+    private String generateStyleTagContent(Iterable<Stylesheet> stylesheets) {
         return null;
     }
 
