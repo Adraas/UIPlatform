@@ -9,8 +9,11 @@ import ru.wkn.RepositoryFacade;
 import ru.wkn.entities.HtmlTag;
 import ru.wkn.entities.JavaScriptFunction;
 import ru.wkn.htmlforms.HtmlFormType;
+import ru.wkn.repository.JavaScriptFunctionRepository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SimpleHtmlWrapper extends HtmlWrapper {
 
@@ -33,31 +36,48 @@ public class SimpleHtmlWrapper extends HtmlWrapper {
 
     @Override
     public Document wrapHtmlTagsIntoHtmlPage(List<HtmlTag> htmlTags) {
-        List<JavaScriptFunction> javaScriptFunctions = extractJSFunctions(htmlTags);
+        Map<JavaScriptFunction, String> javaScriptFunctions = extractJSFunctions(htmlTags);
         StringBuilder htmlPageBuilder = new StringBuilder("<!DOCTYPE html>\n");
         htmlPageBuilder.append("<html lang=\"ru\">\n")
                 .append("<head>\n")
                 .append("<title>Simple HTML input form</title>\n")
                 .append("<script language=\"JavaScript\" type=\"text/javascript\">\n")
-                .append(generateScriptTagContent(javaScriptFunctions))
+                .append(generateScriptTagContent(javaScriptFunctions.keySet()))
                 .append("</script>\n")
                 .append("</head>\n")
                 .append("<body>\n")
-                .append(generateBodyTagContent(htmlTags))
+                .append(generateBodyTagContent(htmlTags, javaScriptFunctions))
                 .append("</body>\n")
                 .append("</html>");
         return Jsoup.parse(htmlPageBuilder.toString());
     }
 
-    private List<JavaScriptFunction> extractJSFunctions(List<HtmlTag> htmlTags) {
+    private Map<JavaScriptFunction, String> extractJSFunctions(List<HtmlTag> htmlTags) {
+        Map<JavaScriptFunction, String> javaScriptFunctions = new HashMap<>();
+        for (HtmlTag htmlTag : htmlTags) {
+            Iterable<String> attributes = htmlTag.getHtmlAttributes().keySet();
+            for (String attribute : attributes) {
+                if (attribute.startsWith("on")) {
+                    String functionInvocation = htmlTag.getHtmlAttributes().get(attribute);
+                    String functionName = functionInvocation.split("\\(")[0];
+                    int firstOpeningParenthesis = functionInvocation.indexOf("(");
+                    int lastClosingParenthesis = functionInvocation.lastIndexOf(")");
+                    String realParameters =
+                            functionInvocation.substring(firstOpeningParenthesis + 1, lastClosingParenthesis);
+                    javaScriptFunctions
+                            .put(((JavaScriptFunctionRepository) getRepositoryFacade().getService().getRepository())
+                                    .findJavaScriptFunctionByFunctionName(functionName), realParameters);
+                }
+            }
+        }
+        return javaScriptFunctions;
+    }
+
+    private String generateScriptTagContent(Iterable<JavaScriptFunction> javaScriptFunctions) {
         return null;
     }
 
-    private String generateScriptTagContent(List<JavaScriptFunction> javaScriptFunctions) {
-        return null;
-    }
-
-    private String generateBodyTagContent(List<HtmlTag> htmlTags) {
+    private String generateBodyTagContent(List<HtmlTag> htmlTags, Map<JavaScriptFunction, String> javaScriptFunctions) {
         return null;
     }
 }
