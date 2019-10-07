@@ -103,7 +103,7 @@ public class SimpleHtmlWrapper extends HtmlWrapper {
 
     private StringBuilder generateParametersLine(JavaScriptFunction javaScriptFunction) {
         StringBuilder parametersLineBuilder = new StringBuilder();
-        if (javaScriptFunction.getParameters().size() > 0) {
+        if (!javaScriptFunction.getParameters().isEmpty()) {
             for (String parameterName : javaScriptFunction.getParameters().keySet()) {
                 parametersLineBuilder.append(javaScriptFunction.getParameters().get(parameterName))
                         .append(" ").append(parameterName).append(", ");
