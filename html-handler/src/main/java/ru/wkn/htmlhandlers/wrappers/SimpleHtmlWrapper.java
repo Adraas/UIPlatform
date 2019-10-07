@@ -12,6 +12,7 @@ import ru.wkn.entities.Stylesheet;
 import ru.wkn.htmlforms.HtmlFormType;
 import ru.wkn.repository.JavaScriptFunctionRepository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,7 +80,11 @@ public class SimpleHtmlWrapper extends HtmlWrapper {
     }
 
     private Iterable<Stylesheet> extractCSS(List<HtmlTag> htmlTags) {
-        return null;
+        ArrayList<Stylesheet> stylesheets = new ArrayList<>();
+        for (HtmlTag htmlTag : htmlTags) {
+            stylesheets.add(htmlTag.getStylesheet());
+        }
+        return stylesheets;
     }
 
     private String generateScriptTagContent(Iterable<JavaScriptFunction> javaScriptFunctions) {
