@@ -41,7 +41,7 @@ public class JavaScriptFunction {
     private String functionName;
 
     /**
-     * The parameters of the JS function.
+     * The parameters of the JS function. The key of this map - it's a name of the parameter, value - its type.
      */
     @MapKeyColumn(name = "parameter_type", unique = true, length = 30)
     @Column(name = "parameter_name", nullable = false, length = 30)
