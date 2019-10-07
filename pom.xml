@@ -34,6 +34,7 @@
     <modules>
         <module>repository</module>
         <module>html-handler</module>
+        <module>platform-web-core</module>
     </modules>
 
     <build>
