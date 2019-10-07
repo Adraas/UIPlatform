@@ -5,13 +5,18 @@ import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Tag;
+import ru.wkn.RepositoryFacade;
 import ru.wkn.entities.HtmlTag;
 import ru.wkn.entities.JavaScriptFunction;
 import ru.wkn.htmlforms.HtmlFormType;
 
 import java.util.List;
 
-public class SimpleHtmlWrapper implements IHtmlWrapper {
+public class SimpleHtmlWrapper extends HtmlWrapper {
+
+    public SimpleHtmlWrapper(RepositoryFacade repositoryFacade) {
+        super(repositoryFacade);
+    }
 
     @Override
     public Element wrapHtmlTagsIntoForm(List<HtmlTag> htmlTags, HtmlFormType htmlFormType) {
