@@ -28,6 +28,17 @@ public class JavaScriptFunctionService implements IService<JavaScriptFunction, I
      * @return a found collection of the {@code JavaScriptFunction} objects
      */
     public Iterable<JavaScriptFunction> getJavaScriptFunctionsByFunctionName(String functionName) {
-        return repository.findJavaScriptFunctionByFunctionName(functionName);
+        return repository.findJavaScriptFunctionsByFunctionName(functionName);
+    }
+
+    /**
+     * The method for the obtaining JavaScript functions ({@code JavaScriptFunction} type) by the given function's
+     * implementation as a {@code String} value.
+     *
+     * @param functionImplementation the given JS function's implementation as a {@code String} value for the searching
+     * @return a found collection of the {@code JavaScriptFunction} objects
+     */
+    public Iterable<JavaScriptFunction> getJavaScriptFunctionByFunctionImplementation(String functionImplementation) {
+        return repository.findJavaScriptFunctionsByFunctionImplementation(functionImplementation);
     }
 }
