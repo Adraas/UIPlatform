@@ -1,4 +1,4 @@
-package ru.wkn.htmlforms;
+package ru.wkn.htmlutil;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

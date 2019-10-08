@@ -6,7 +6,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import ru.wkn.RepositoryFacade;
 import ru.wkn.entities.HtmlTag;
-import ru.wkn.htmlforms.HtmlFormType;
+import ru.wkn.htmlutil.HtmlFormType;
 
 import java.util.List;
 

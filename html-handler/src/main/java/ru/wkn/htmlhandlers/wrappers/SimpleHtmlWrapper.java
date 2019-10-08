@@ -9,7 +9,7 @@ import ru.wkn.RepositoryFacade;
 import ru.wkn.entities.HtmlTag;
 import ru.wkn.entities.JavaScriptFunction;
 import ru.wkn.entities.Stylesheet;
-import ru.wkn.htmlforms.HtmlFormType;
+import ru.wkn.htmlutil.HtmlFormType;
 import ru.wkn.services.JavaScriptFunctionService;
 import ru.wkn.services.ServiceBeanName;
 
