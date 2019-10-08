@@ -12,7 +12,7 @@ import ru.wkn.repository.HtmlTagRepository;
  * @author Orin Adraas
  * @see IService
  */
-@Service
+@Service(value = "htmlTagService")
 @Getter
 public class HtmlTagService implements IService<Integer, HtmlTag> {
 

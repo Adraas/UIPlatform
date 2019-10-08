@@ -12,7 +12,7 @@ import ru.wkn.repository.UserInputEntryRepository;
  * @author Orin Adraas
  * @see IService
  */
-@Service
+@Service(value = "userInputEntryService")
 @Getter
 public class UserInputEntryService implements IService<Integer, UserInputEntry> {
 
