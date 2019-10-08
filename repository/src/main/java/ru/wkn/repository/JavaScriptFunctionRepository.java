@@ -13,11 +13,11 @@ import ru.wkn.entities.JavaScriptFunction;
 public interface JavaScriptFunctionRepository extends CrudRepository<JavaScriptFunction, Integer> {
 
     /**
-     * The method for the obtaining JavaScript function ({@code JavaScriptFunction} type) by the given function name as
+     * The method for the obtaining JavaScript functions ({@code JavaScriptFunction} type) by the given function name as
      * a {@code String} value.
      *
      * @param functionName the given JS function name as a {@code String} value for the searching
-     * @return a found {@code JavaScriptFunction} object
+     * @return a found collection of the {@code JavaScriptFunction} objects
      */
-    JavaScriptFunction findJavaScriptFunctionByFunctionName(String functionName);
+    Iterable<JavaScriptFunction> findJavaScriptFunctionByFunctionName(String functionName);
 }
