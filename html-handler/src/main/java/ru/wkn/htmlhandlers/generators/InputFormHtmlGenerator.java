@@ -7,7 +7,8 @@ import org.jsoup.safety.Whitelist;
 import ru.wkn.RepositoryFacade;
 import ru.wkn.entities.HtmlTag;
 import ru.wkn.entities.HtmlTagType;
-import ru.wkn.repository.HtmlTagRepository;
+import ru.wkn.services.HtmlTagService;
+import ru.wkn.services.ServiceBeanName;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -80,8 +81,8 @@ public class InputFormHtmlGenerator extends HtmlGenerator {
      */
     @Override
     public List<Element> chooseRandomElementsFromRepositoryByType(int htmlTagsQuantity, HtmlTagType htmlTagType) {
-        List<HtmlTag> htmlTags = (List<HtmlTag>) ((HtmlTagRepository) getRepositoryFacade().getService().getRepository())
-                .findHtmlTagsByType(htmlTagType);
+        List<HtmlTag> htmlTags = (List<HtmlTag>) ((HtmlTagService) getRepositoryFacade().getServiceMap()
+                .get(ServiceBeanName.HTML_TAG_SERVICE)).getRepository().findHtmlTagsByType(htmlTagType);
         int[] randomValues = generateRandomValues(htmlTagsQuantity, htmlTags.size() - 1);
         List<Element> elements = new ArrayList<>();
         for (int i = 0; i < htmlTagsQuantity; i++) {

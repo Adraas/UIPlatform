@@ -10,7 +10,8 @@ import ru.wkn.entities.HtmlTag;
 import ru.wkn.entities.JavaScriptFunction;
 import ru.wkn.entities.Stylesheet;
 import ru.wkn.htmlforms.HtmlFormType;
-import ru.wkn.repository.JavaScriptFunctionRepository;
+import ru.wkn.services.JavaScriptFunctionService;
+import ru.wkn.services.ServiceBeanName;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -89,7 +90,8 @@ public class SimpleHtmlWrapper extends HtmlWrapper {
                     String realParameters =
                             functionInvocation.substring(firstOpeningParenthesis + 1, lastClosingParenthesis);
                     javaScriptFunctions
-                            .put(((JavaScriptFunctionRepository) getRepositoryFacade().getService().getRepository())
+                            .put(((JavaScriptFunctionService) getRepositoryFacade().getServiceMap()
+                                    .get(ServiceBeanName.JAVASCRIPT_FUNCTION_SERVICE)).getRepository()
                                     .findJavaScriptFunctionByFunctionName(functionName), realParameters);
                 }
             }
