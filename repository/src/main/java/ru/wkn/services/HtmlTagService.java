@@ -2,6 +2,7 @@ package ru.wkn.services;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 import ru.wkn.entities.HtmlTag;
 import ru.wkn.repository.HtmlTagRepository;
 
@@ -11,6 +12,7 @@ import ru.wkn.repository.HtmlTagRepository;
  * @author Orin Adraas
  * @see IService
  */
+@Service
 @Getter
 public class HtmlTagService implements IService<HtmlTag, Integer> {
 

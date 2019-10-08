@@ -2,6 +2,7 @@ package ru.wkn.services;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 import ru.wkn.entities.UserInputEntry;
 import ru.wkn.repository.UserInputEntryRepository;
 
@@ -11,6 +12,7 @@ import ru.wkn.repository.UserInputEntryRepository;
  * @author Orin Adraas
  * @see IService
  */
+@Service
 @Getter
 public class UserInputEntryService implements IService<UserInputEntry, Integer> {
 
