@@ -14,7 +14,7 @@ import ru.wkn.repository.UserInputEntryRepository;
  */
 @Service
 @Getter
-public class UserInputEntryService implements IService<UserInputEntry, Integer> {
+public class UserInputEntryService implements IService<Integer, UserInputEntry> {
 
     /**
      * The {@code repository} bean represented a repository (DAO) layer.

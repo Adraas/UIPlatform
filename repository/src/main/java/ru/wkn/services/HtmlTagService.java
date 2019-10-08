@@ -14,7 +14,7 @@ import ru.wkn.repository.HtmlTagRepository;
  */
 @Service
 @Getter
-public class HtmlTagService implements IService<HtmlTag, Integer> {
+public class HtmlTagService implements IService<Integer, HtmlTag> {
 
     /**
      * The {@code repository} bean represented a repository (DAO) layer.
