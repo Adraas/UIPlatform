@@ -81,8 +81,8 @@ public class InputFormHtmlGenerator extends HtmlGenerator {
      */
     @Override
     public List<Element> chooseRandomElementsFromRepositoryByType(int htmlTagsQuantity, HtmlTagType htmlTagType) {
-        List<HtmlTag> htmlTags = (List<HtmlTag>) ((HtmlTagService) getRepositoryFacade().getServiceMap()
-                .get(ServiceBeanName.HTML_TAG_SERVICE)).getRepository().findHtmlTagsByType(htmlTagType);
+        List<HtmlTag> htmlTags = ((HtmlTagService) getRepositoryFacade().getServiceMap()
+                .get(ServiceBeanName.HTML_TAG_SERVICE)).readHtmlTagByType(htmlTagType);
         int[] randomValues = generateRandomValues(htmlTagsQuantity, htmlTags.size() - 1);
         List<Element> elements = new ArrayList<>();
         for (int i = 0; i < htmlTagsQuantity; i++) {

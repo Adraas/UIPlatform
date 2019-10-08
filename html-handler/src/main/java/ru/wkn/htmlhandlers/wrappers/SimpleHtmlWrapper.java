@@ -15,6 +15,7 @@ import ru.wkn.services.ServiceBeanName;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * The {@code SimpleHtmlWrapper} class implements the HTML wrapper methods for the HTML by the simple way.
@@ -83,10 +84,13 @@ public class SimpleHtmlWrapper extends HtmlWrapper {
                 if (attribute.startsWith("on")) {
                     String functionInvocation = htmlTag.getHtmlAttributes().get(attribute);
                     String functionName = functionInvocation.split("\\(")[0];
+                    List<JavaScriptFunction> foundJavaScriptFunctions =
+                            (List<JavaScriptFunction>) ((JavaScriptFunctionService) getRepositoryFacade()
+                                    .getServiceMap().get(ServiceBeanName.JAVASCRIPT_FUNCTION_SERVICE))
+                                    .getJavaScriptFunctionsByFunctionName(functionName);
+                    int randomFunctionNumber = new Random().nextInt(foundJavaScriptFunctions.size());
                     ((ArrayList<JavaScriptFunction>) javaScriptFunctions)
-                            .add(((JavaScriptFunctionService) getRepositoryFacade().getServiceMap()
-                                    .get(ServiceBeanName.JAVASCRIPT_FUNCTION_SERVICE)).getRepository()
-                                    .findJavaScriptFunctionByFunctionName(functionName));
+                            .add(foundJavaScriptFunctions.get(randomFunctionNumber));
                 }
             }
         }
