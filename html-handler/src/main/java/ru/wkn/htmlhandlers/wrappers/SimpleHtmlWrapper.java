@@ -14,9 +14,7 @@ import ru.wkn.services.JavaScriptFunctionService;
 import ru.wkn.services.ServiceBeanName;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * The {@code SimpleHtmlWrapper} class implements the HTML wrapper methods for the HTML by the simple way.
@@ -57,14 +55,14 @@ public class SimpleHtmlWrapper extends HtmlWrapper {
      */
     @Override
     public Document wrapHtmlTagsIntoHtmlPage(List<HtmlTag> htmlTags) {
-        Map<JavaScriptFunction, String> javaScriptFunctions = extractJSFunctions(htmlTags);
+        Iterable<JavaScriptFunction> javaScriptFunctions = extractJSFunctions(htmlTags);
         Iterable<Stylesheet> stylesheets = extractCSS(htmlTags);
         StringBuilder htmlPageBuilder = new StringBuilder("<!DOCTYPE html>\n");
         htmlPageBuilder.append("<html lang=\"ru\">\n")
                 .append("<head>\n")
                 .append("<title>Simple HTML input form</title>\n")
                 .append("<script language=\"JavaScript\" type=\"text/javascript\">\n")
-                .append(generateScriptTagContent(javaScriptFunctions.keySet()))
+                .append(generateScriptTagContent(javaScriptFunctions))
                 .append("\n</script>\n")
                 .append("<style>\n")
                 .append(generateStyleTagContent(stylesheets))
@@ -77,22 +75,18 @@ public class SimpleHtmlWrapper extends HtmlWrapper {
         return Jsoup.parse(htmlPageBuilder.toString());
     }
 
-    private Map<JavaScriptFunction, String> extractJSFunctions(List<HtmlTag> htmlTags) {
-        Map<JavaScriptFunction, String> javaScriptFunctions = new HashMap<>();
+    private Iterable<JavaScriptFunction> extractJSFunctions(Iterable<HtmlTag> htmlTags) {
+        Iterable<JavaScriptFunction> javaScriptFunctions = new ArrayList<>();
         for (HtmlTag htmlTag : htmlTags) {
             Iterable<String> attributes = htmlTag.getHtmlAttributes().keySet();
             for (String attribute : attributes) {
                 if (attribute.startsWith("on")) {
                     String functionInvocation = htmlTag.getHtmlAttributes().get(attribute);
                     String functionName = functionInvocation.split("\\(")[0];
-                    int firstOpeningParenthesis = functionInvocation.indexOf("(");
-                    int lastClosingParenthesis = functionInvocation.lastIndexOf(")");
-                    String realParameters =
-                            functionInvocation.substring(firstOpeningParenthesis + 1, lastClosingParenthesis);
-                    javaScriptFunctions
-                            .put(((JavaScriptFunctionService) getRepositoryFacade().getServiceMap()
+                    ((ArrayList<JavaScriptFunction>) javaScriptFunctions)
+                            .add(((JavaScriptFunctionService) getRepositoryFacade().getServiceMap()
                                     .get(ServiceBeanName.JAVASCRIPT_FUNCTION_SERVICE)).getRepository()
-                                    .findJavaScriptFunctionByFunctionName(functionName), realParameters);
+                                    .findJavaScriptFunctionByFunctionName(functionName));
                 }
             }
         }
