@@ -5,6 +5,9 @@ import lombok.Setter;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.wkn.services.IService;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 /**
  * The class {@code RepositoryFacade} represents the facade pattern of the repository.
  *
@@ -15,18 +18,23 @@ import ru.wkn.services.IService;
 public class RepositoryFacade {
 
     /**
-     * The abstract representation of the repository services.
+     * The collection of the {@code IService} objects. The key of map - it's a {@code IService} bean name, the value -
+     * its instance.
      */
-    private IService service;
+    private Map<String, IService> serviceMap;
 
     /**
-     * Initializes a newly created {@code RepositoryFacade} object with the assignment value from the context for the
-     * {@code services} property.
+     * Initializes a newly created {@code RepositoryFacade} object with the assignment {@code IService} values from the
+     * context by means the {@code serviceBeanNames} collection.
      *
-     * @param serviceBeanName the repository services bean name
+     * @param serviceBeanNames the bean names for the services
      */
-    public RepositoryFacade(String serviceBeanName) {
-        service = (IService) new ClassPathXmlApplicationContext("/META-INF/spring-data-context.xml")
-                .getBean(serviceBeanName);
+    public RepositoryFacade(Iterable<String> serviceBeanNames) {
+        serviceMap = new TreeMap<>();
+        for (String serviceBeanName : serviceBeanNames) {
+            serviceMap.put(serviceBeanName,
+                    (IService) new ClassPathXmlApplicationContext("/META-INF/spring-data-context.xml")
+                            .getBean(serviceBeanName));
+        }
     }
 }
