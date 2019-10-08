@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd">
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util
+       https://www.springframework.org/schema/util/spring-util.xsd">
 
-    <bean id="simpleHtmlGenerator" class="ru.wkn.htmlhandlers.generators.InputFormHtmlGenerator"/>
-    <bean id="simpleHtmlWrapper" class="ru.wkn.htmlhandlers.wrappers.SimpleHtmlWrapper"/>
+    <bean id="serviceBeanNames" class="java.util.ArrayList">
+        <util:list>
+            <value>htmlTagService</value>
+            <value>javaScriptFunctionService</value>
+            <value>stylesheetService</value>
+            <value>userInputEntryService</value>
+        </util:list>
+    </bean>
+
+    <bean id="repositoryFacade" class="ru.wkn.RepositoryFacade">
+        <constructor-arg name="serviceBeanNames" ref="serviceBeanNames"/>
+    </bean>
+
+    <bean id="simpleHtmlGenerator" class="ru.wkn.htmlhandlers.generators.InputFormHtmlGenerator">
+        <constructor-arg name="repositoryFacade" ref="repositoryFacade"/>
+    </bean>
+
+    <bean id="simpleHtmlWrapper" class="ru.wkn.htmlhandlers.wrappers.SimpleHtmlWrapper">
+        <constructor-arg name="repositoryFacade" ref="repositoryFacade"/>
+    </bean>
 
 </beans>
