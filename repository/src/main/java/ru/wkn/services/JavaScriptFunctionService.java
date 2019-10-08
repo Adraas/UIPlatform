@@ -10,4 +10,8 @@ import ru.wkn.repository.JavaScriptFunctionRepository;
 public class JavaScriptFunctionService implements IService<JavaScriptFunction, Integer> {
 
     private JavaScriptFunctionRepository repository;
+
+    public Iterable<JavaScriptFunction> getJavaScriptFunctionsByFunctionName(String functionName) {
+        return repository.findJavaScriptFunctionByFunctionName(functionName);
+    }
 }
