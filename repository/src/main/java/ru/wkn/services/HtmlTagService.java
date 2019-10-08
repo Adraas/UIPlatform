@@ -4,7 +4,10 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.wkn.entities.HtmlTag;
+import ru.wkn.entities.HtmlTagType;
 import ru.wkn.repository.HtmlTagRepository;
+
+import java.util.List;
 
 /**
  * The class {@code HtmlTagService} represents a repository services layer implementation.
@@ -39,6 +42,16 @@ public class HtmlTagService implements IService<Integer, HtmlTag> {
      */
     public HtmlTag readHtmlTagById(Integer id) {
         return repository.findById(id).orElse(null);
+    }
+
+    /**
+     * The method for the finding HTML tags ({@code HtmlTag} type) by the given HTML tag type ({@code HtmlTagType} type).
+     *
+     * @param htmlTagType the given HTML tag type for the searching
+     * @return a collection of found {@code HtmlTag} objects
+     */
+    public List<HtmlTag> readHtmlTagByType(HtmlTagType htmlTagType) {
+        return (List<HtmlTag>) repository.findHtmlTagsByType(htmlTagType);
     }
 
     /**
