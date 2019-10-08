@@ -27,7 +27,12 @@ public enum HtmlTagType {
     /**
      * The {@code textarea} HTML-element representation.
      */
-    TEXTAREA("textarea");
+    TEXTAREA("textarea"),
+
+    /**
+     * The {@code button} HTML-element representation.
+     */
+    BUTTON("button");
 
     /**
      * The HTML tag type as a {@code String} object.
