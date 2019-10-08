@@ -25,11 +25,6 @@ public enum HtmlTagType {
     SELECT("select"),
 
     /**
-     * The {@code checkbox} HTML-element representation.
-     */
-    CHECKBOX("checkbox"),
-
-    /**
      * The {@code textarea} HTML-element representation.
      */
     TEXTAREA("textarea");
